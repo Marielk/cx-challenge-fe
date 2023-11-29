@@ -1,0 +1,37 @@
+@import "src/styles/globals";
+ 
+.searchBarContainer {
+  background-color: $ml-yellow;
+  height: 2.8em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  @include small-screen {
+    width: 95%;
+    padding: 0.5em;
+  }
+  .searchBarInput {
+    width: 64%;
+    height: 1.1em;
+    border: none;
+    border-radius: 3px 0px 0px 3px;
+    padding: 0.5em;
+    margin-left: 2em;
+    @include small-screen {
+      width: 75%;
+      margin-left: 0.5em;
+    }
+  }
+  .searchBarButton {
+    height: 2.1em;
+    width: 2.5em;
+    border: none;
+    border-radius: 0px 3px 3px 0px;
+    
+  }
+  .searchBarButton:hover {
+    cursor: pointer;
+  }
+}
+
+  

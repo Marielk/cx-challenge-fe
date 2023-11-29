@@ -1,0 +1,103 @@
+@import "src/styles/globals";
+
+.searchResultsContainer {
+  position: absolute;
+  width: 100%;
+  min-height: 100vh;
+  background-color: $ml-gray;
+  display: flex;
+  justify-content: center;
+
+  .searchResultsList {
+    background-color: white;
+    width: 70%;
+    margin-top: 2.5em;
+    padding-left: 1em;
+    @include small-screen {
+      width: 90%;
+    }
+
+    .searchResultsLiElement {
+      list-style: none;
+      a {
+        text-decoration: none;
+      }
+      .productItem {
+        display:flex;
+        justify-content: space-between;
+        align-items:start; 
+        font-family: Proxima Nova,-apple-system,Roboto,Arial,sans-serif;
+        color: $ml-text-gray;
+        padding-bottom: 0.5em;
+        border-bottom: 1px solid $ml-gray;
+        margin-right: 1em;
+        @include small-screen {
+          flex-direction: column;
+          justify-content: center;
+          align-items:center;
+          margin-bottom: 1em;
+        }
+
+        .column {
+          display:flex;
+          flex-direction: row;
+          width: 80%;
+          @include small-screen {
+            flex-direction: column;
+            align-items:center;
+            width: 100%;
+          }
+        }
+
+        .productInfo {
+          width: 60%;
+          padding-top: 2.5em;
+          margin-left: 1em;
+          @include small-screen {
+            width: 100%;
+            padding-top: 2em;
+            margin-left: 0px;
+          }
+
+          p {
+            padding-bottom: 0px;
+            font-size: 20px;
+            font-weight: 400;
+            margin-top: 0px;
+            margin-bottom: 0.5em;
+            display: flex;
+            align-items: center;
+
+            span.productShippingIcon {
+              border-radius: 50%;
+              background-color: $ml-text-green;
+              color: $ml-text-gray;
+              font-size: 8px;
+              padding: 3px;
+              margin-left: 5px;
+            }
+          }
+          h2 {
+            font-size: 16px;
+            font-weight: 200;
+            line-height: 1.3;
+            margin-top: 0px;
+          }
+        }
+        p.productInstallments {
+          font-size: 12px;
+          font-weight: 200;
+          color: $ml-text-green;
+        }
+        .productLocation {
+          color: $ml-text-lightgray;
+          font-size: 12px;
+          padding-top: 2em;
+          @include small-screen {
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
+}
