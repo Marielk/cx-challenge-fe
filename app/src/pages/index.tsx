@@ -1,8 +1,7 @@
 import * as React from 'react';
 import Head from 'next/head';
 import { AppProvider } from '../context/AppContext';
-import SearchBar from '../features/Search/SearchBar';
-import SearchResults from '../features/Search/SearchResults';
+import Search from '../features/Search/SearchIndex';
 
 const Home: React.FC = () => {
   return (
@@ -14,14 +13,10 @@ const Home: React.FC = () => {
           <link rel="icon" href="/favicon.ico" />
         </Head>
 
-        <main>
-          <h1>Mercado Libre Search</h1>
-          <SearchBar />
-          <SearchResults />
-        </main>
+        <Search />
 
         <footer>
-          <p>© {new Date().getFullYear()} Mercado Libre Search</p>
+          <p>© {new Date().getFullYear()} Mercado Libre Challenge</p>
         </footer>
       </div>
     </AppProvider>

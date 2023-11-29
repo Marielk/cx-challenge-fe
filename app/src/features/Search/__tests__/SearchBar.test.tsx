@@ -1,7 +1,8 @@
 import React from 'react';
 import { render, fireEvent, screen } from '@testing-library/react';
-import SearchBar from '../SearchBar';
+import SearchBar from '../components/SearchBar';
 import { AppProvider, useAppState } from '../../../context/AppContext';
+import { dispatchMock, initialStateMock } from '../../../context/__test__/contextMocks';
 
 jest.mock('../../../context/AppContext', () => ({
   ...jest.requireActual('../../../context/AppContext'),
@@ -9,13 +10,8 @@ jest.mock('../../../context/AppContext', () => ({
 }));
 describe('SearchBar Component', () => {
   it('should update searchQuery on input change', () => {
-    let initialState = { searchQuery: '' };
-    const dispatch = (args:{type: string, payload: string}) => {
-      if(args.type === 'SET_SEARCH_QUERY') {
-        return initialState.searchQuery = args.payload
-      }
-    }
-    (useAppState as jest.Mock).mockReturnValue({ state: initialState, dispatch});
+    
+    (useAppState as jest.Mock).mockReturnValue({ state: initialStateMock, dispatch: dispatchMock});
     render(
       <AppProvider>
         <SearchBar />

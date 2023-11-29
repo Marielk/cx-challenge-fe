@@ -1,20 +1,21 @@
 export interface Product {
   id: string;
   title: string;
-  price: {
-    currency: string;
-    amount: string;
-    decimals: number;
-  };
-  installments: {
-    quantity: number;
-    amount: string;
+  price: number, // precio
+  installments?: {
+    quantity: number; // cuotas
+    amount: number;
   };
   address: {
-    state_name: string;
+    state_name: string; //lugar
     city_name: string;
   };
-  picture: string;
+  picture: string; 
   condition: string;
   free_shipping: boolean;
+  thumbnail: string; //foto
+  shipping: {
+    logistic_type: string; // === 'fulfillment'
+  },
+  currency_id: string;
 }

@@ -1,0 +1,22 @@
+:root {
+  body.mainContainer {
+    margin: 0px;
+    overflow-y: scroll;
+  }
+}
+
+$min-width-mobile: 320px;
+$max-width-mobile: 768px;
+
+@mixin small-screen {
+  @media (min-width:$min-width-mobile) and (max-width: $max-width-mobile) {
+    @content;
+  }
+}
+
+$ml-yellow: #ffe600 !default;
+$ml-gray: #eeeeee !default;
+$ml-text-gray: #333 !default;
+$ml-text-lightgray: #737373 !default;
+$ml-text-green: #00a650 !default;
+
