@@ -9,8 +9,8 @@ const Home: React.FC = () => {
       <div>
         <Head>
           <title>Mercado Libre Search</title>
-          <meta name="description" content="Buscador de productos de Mercado Libre" />
-          <link rel="icon" href="/favicon.ico" />
+          <meta name='description' content='Buscador de productos de Mercado Libre' />
+          <link rel='icon' href='/favicon.ico' />
         </Head>
 
         <Search />

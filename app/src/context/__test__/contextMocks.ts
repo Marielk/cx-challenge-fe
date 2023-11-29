@@ -1,5 +1,5 @@
-import { Product } from "@/src/types/product";
-import { actionTypes } from "./constants";
+import { Product } from '@/src/types/product';
+import { actionTypes } from './constants';
 
 export let initialStateMock = { searchQuery: '', products: []  as Array<Product> };
 

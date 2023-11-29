@@ -1,5 +1,7 @@
 require('jsdom-global/register');
 
+
+global.TextEncoder = require('util').TextEncoder;
 const nextJest = require('next/jest')
 const createJestConfig = nextJest({
   dir: './'
@@ -13,10 +15,4 @@ const config = {
 
 
 module.exports = createJestConfig(config)
-// module.exports = {
-//   preset: 'ts-jest',
-//   testEnvironment: 'jsdom',
-//   setupFilesAfterEnv: ['<rootDir>/__test__/setupTests.ts'],
-//   "bail": 1,
-//   "verbose": true
-// };
+

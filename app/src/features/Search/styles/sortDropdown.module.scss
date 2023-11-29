@@ -1,0 +1,78 @@
+@import 'src/styles/globals';
+
+.sortDropdownContainer {
+  margin-bottom: 0.5em;
+  display: flex;
+  width: 68%;
+  justify-content: flex-end;
+  align-items: flex-end;
+  height: 2em;
+
+  label {
+    margin-right: 1em;
+    font-family: Proxima Nova,-apple-system,Roboto,Arial,sans-serif;
+    color: $ml-text-gray;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.7;
+  }
+
+  .customSelect {
+    position: relative;
+    background-color: $ml-gray; 
+    select {
+      display: none;
+    }
+    .selectSelected {
+      font-size: 14px;
+      line-height: 1.7;
+      font-family: Proxima Nova,-apple-system,Roboto,Arial,sans-serif;
+      color: $ml-text-gray;
+      border: none;
+      background-color: $ml-gray;
+      cursor: pointer;
+    }
+    .selectSelected:after {
+      position: absolute;
+      content: '';
+      top: 10px;
+      right: -18px;
+      width: 0;
+      height: 0;
+      border: 6px solid transparent;
+      border-color: dodgerblue transparent transparent transparent;
+    }
+
+    .selectSelected.selectArrowActive:after {
+      border-color: transparent transparent dodgerblue transparent;
+      top: 7px;
+    }
+
+    .selectItems {
+      position: absolute;
+      top: 100%;
+      left: -45px;
+      right: 0;
+      z-index: 99;
+      width: 9em;
+      background: white;
+      border-radius: 5px;
+      font-family: Proxima Nova,-apple-system,Roboto,Arial,sans-serif;
+      text-align: center;
+      cursor: pointer;
+      div{
+        border-bottom: 1px solid lightgray;
+        padding: 0.5em;
+      }
+    }
+    .selectHide {
+      visibility: hidden;
+    }
+    
+    .sameAsSelected {
+      background-color: white;
+      color: dodgerblue;
+      border-left: 5px solid dodgerblue;
+    }
+  }
+}

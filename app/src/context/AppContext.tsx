@@ -10,6 +10,8 @@ interface AppContextProps {
 const initialState: AppState = {
   products: [],
   searchQuery: '',
+  sort: '',
+  availableSorts: []
 };
 
 export const AppContext = createContext<AppContextProps | undefined>(undefined);
@@ -20,6 +22,10 @@ const appReducer = (state: AppState, action: AppAction): AppState => {
       return { ...state, products: action.payload };
     case 'SET_SEARCH_QUERY':
       return { ...state, searchQuery: action.payload };
+    case 'SET_SORT':
+      return { ...state, sort: action.payload };
+    case 'SET_AVAILABLE_SORTS':
+      return { ...state, availableSorts: action.payload };
     default:
       return state;
   }

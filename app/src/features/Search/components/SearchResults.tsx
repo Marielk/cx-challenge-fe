@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useAppState } from '../../../context/AppContext';
 import { Product } from '../../../types/product';
 import styles from '../styles/searchResults.module.scss';
@@ -8,8 +8,10 @@ import { formatProductPrice } from '@/src/utils/priceUtils';
 import { shippingIcon } from '../constants/texts';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTruck } from '@fortawesome/free-solid-svg-icons';
+import SortDropdown from './SortDropdown';
 
 const SearchResults: React.FC = () => {
+  const [products, setProducts] = useState([])
   const { state, dispatch } = useAppState();
 
   useEffect(() => {
@@ -19,10 +21,9 @@ const SearchResults: React.FC = () => {
           `https://api.mercadolibre.com/sites/MLA/search?q=${state.searchQuery}&limit=10`
         );
         const data = await response.json();
-        dispatch({ type: 'SET_PRODUCTS', payload: data.results });
-        data.results.map((product: Product) => {
-          console.log(product)
-        })
+        setProducts(data.results)
+        dispatch({type: 'SET_AVAILABLE_SORTS', payload: data.available_sorts})
+        dispatch({type: 'SET_SORT', payload: data.available_sorts[0].id})
       } catch (error) {
         console.error('Error fetching search results:', error);
       }
@@ -33,12 +34,39 @@ const SearchResults: React.FC = () => {
     }
   }, [state.searchQuery, dispatch]);
 
+  useEffect(() => {
+    if (state.sort !== '' && products.length > 0) {
+      const sortedProducts = sortProducts(state.sort);
+      dispatch({ type: 'SET_PRODUCTS', payload: sortedProducts });
+    }
+  }, [state.sort, products]);
+
+  const sortProducts= (sort: string) => {
+    switch (sort) {
+      case 'price_asc':
+        return [...products].sort(comparePrices);
+  
+      case 'price_desc':
+        return [...products].sort((a, b) => comparePrices(b, a));
+  
+      // Add more order cases...
+  
+      default:
+        return products;
+    }
+  }
+
+  const comparePrices = (a: Product, b: Product) => {
+    return a.price - b.price;
+  };
+
   return (
     <div className={styles.searchResultsContainer}>
+      {state.products.length > 0 &&  <SortDropdown />}
       <ul className={styles.searchResultsList}>
         {state.products.map((product: Product) => (
           <li key={product.id} className={styles.searchResultsLiElement}>
-            <a href="product_link">
+            <a href='product_link'>
               <article className={styles.productItem}>
                 <div className={styles.column}>
                   <Image quality='100' className={styles.productImg} src={product.thumbnail} alt={product.title} width={160} height={160} />
