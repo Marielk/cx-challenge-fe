@@ -14,11 +14,10 @@ const SortDropdown: React.FC = () => {
     return(() => {
       document.removeEventListener('click', () => {closeAllSelect(null)})
     })
-  }, [state.sort]);
+  }, []);
 
   const startCustomSelect = () => {
-    if(select.current && state.sort) {
-      select.current.value = state.sort;
+    if(select.current) {
       createCustomSelect(select);
       searchOptions();
     }

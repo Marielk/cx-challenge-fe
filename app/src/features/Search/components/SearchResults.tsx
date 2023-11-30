@@ -4,7 +4,7 @@ import { useAppState } from '../../../context/AppContext';
 import { Product } from '../../../types/product';
 import styles from '../styles/searchResults.module.scss';
 import Image from 'next/image'
-import { formatProductPrice } from '@/src/utils/priceUtils';
+import { formatProductPrice, sortProducts } from '../../../../src/utils/priceUtils';
 import { shippingIcon } from '../constants/texts';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTruck } from '@fortawesome/free-solid-svg-icons';
@@ -36,29 +36,10 @@ const SearchResults: React.FC = () => {
 
   useEffect(() => {
     if (state.sort !== '' && products.length > 0) {
-      const sortedProducts = sortProducts(state.sort);
+      const sortedProducts = sortProducts(state.sort, products);
       dispatch({ type: 'SET_PRODUCTS', payload: sortedProducts });
     }
   }, [state.sort, products]);
-
-  const sortProducts= (sort: string) => {
-    switch (sort) {
-      case 'price_asc':
-        return [...products].sort(comparePrices);
-  
-      case 'price_desc':
-        return [...products].sort((a, b) => comparePrices(b, a));
-  
-      // Add more order cases...
-  
-      default:
-        return products;
-    }
-  }
-
-  const comparePrices = (a: Product, b: Product) => {
-    return a.price - b.price;
-  };
 
   return (
     <div className={styles.searchResultsContainer}>

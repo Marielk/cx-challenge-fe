@@ -5,7 +5,7 @@ export interface AppState {
   searchQuery: string;
   sort: string;
   availableSorts: { id: string; name: string }[];
-  // Otros estados globales pueden agregarse aquí
+  // add more states
 }
 
 export type AppAction =

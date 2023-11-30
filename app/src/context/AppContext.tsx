@@ -16,7 +16,7 @@ const initialState: AppState = {
 
 export const AppContext = createContext<AppContextProps | undefined>(undefined);
 
-const appReducer = (state: AppState, action: AppAction): AppState => {
+export const appReducer = (state: AppState, action: AppAction): AppState => {
   switch (action.type) {
     case 'SET_PRODUCTS':
       return { ...state, products: action.payload };
