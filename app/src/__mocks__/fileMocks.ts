@@ -1,0 +1,1 @@
+module.exports = '../public/logo_ml.png';

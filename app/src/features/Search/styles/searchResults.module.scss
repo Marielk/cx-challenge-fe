@@ -1,4 +1,4 @@
-@import "src/styles/globals";
+@import 'src/styles/globals';
 
 .searchResultsContainer {
   position: absolute;
@@ -7,11 +7,12 @@
   background-color: $ml-gray;
   display: flex;
   justify-content: center;
-
+  flex-direction: column;
+  align-items: center;
   .searchResultsList {
     background-color: white;
     width: 70%;
-    margin-top: 2.5em;
+    margin-top: 0em;
     padding-left: 1em;
     @include small-screen {
       width: 90%;
@@ -25,7 +26,7 @@
       .productItem {
         display:flex;
         justify-content: space-between;
-        align-items:start; 
+        align-items: flex-start; 
         font-family: Proxima Nova,-apple-system,Roboto,Arial,sans-serif;
         color: $ml-text-gray;
         padding-bottom: 0.5em;

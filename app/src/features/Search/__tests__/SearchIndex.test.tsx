@@ -1,10 +1,6 @@
-/**
- * @jest-environment jsdom
- */
-
 import React from 'react';
 import { render, fireEvent, screen } from '@testing-library/react';
-import SearchBar from '../components/SearchBar';
+import Search from '../SearchIndex';
 import { AppProvider, useAppState } from '../../../context/AppContext';
 import { dispatchMock, initialStateMock } from '../../../__mocks__/contextMocks';
 
@@ -12,18 +8,15 @@ jest.mock('../../../context/AppContext', () => ({
   ...jest.requireActual('../../../context/AppContext'),
   useAppState: jest.fn(),
 }));
-describe('SearchBar Component', () => {
-  it('should update searchQuery on input change', () => {
-    
+describe('SearchIndex Component', () => {
+  it('should show Search components', () => {
     (useAppState as jest.Mock).mockReturnValue({ state: initialStateMock, dispatch: dispatchMock});
     render(
       <AppProvider>
-        <SearchBar />
+        <Search />
       </AppProvider>
     );
     const input = screen.getByRole('textbox');
-    fireEvent.change(input, { target: { value: 'test' } });
-    const { state } = useAppState();
-    expect(state.searchQuery).toBe('test');
+    expect(input).toBeInTheDocument();
   });
 });

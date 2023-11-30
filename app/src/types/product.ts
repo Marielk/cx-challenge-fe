@@ -7,12 +7,12 @@ export interface Product {
     amount: number;
   };
   address: {
-    state_name: string; //lugar
-    city_name: string;
+    state_name?: string; //lugar
+    city_name?: string;
   };
-  picture: string; 
+  picture?: string; 
   condition: string;
-  free_shipping: boolean;
+  free_shipping?: boolean;
   thumbnail: string; //foto
   shipping: {
     logistic_type: string; // === 'fulfillment'
