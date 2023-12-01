@@ -3,18 +3,20 @@ import { useAppState } from '../../../context/AppContext';
 import styles from '../styles/sortDropdown.module.scss';
 import { searchTexts } from '../constants/texts';
 import { closeAllSelect, createCustomSelect, selectOption } from './customSelect';
+import { productRequestFilters } from '@/src/types/productRequest';
+import { SearchProductsController } from '../../../services/Search/searchProductsController';
 
 const SortDropdown: React.FC = () => {
   const { state, dispatch } = useAppState();
   const select = useRef<HTMLSelectElement>(null);
 
   useEffect(() => {
-    startCustomSelect();
+    state.availableSorts && startCustomSelect();
     document.addEventListener('click', () => {closeAllSelect(null)})
     return(() => {
       document.removeEventListener('click', () => {closeAllSelect(null)})
     })
-  }, []);
+  }, [state.availableSorts]);
 
   const startCustomSelect = () => {
     if(select.current) {
@@ -34,20 +36,30 @@ const SortDropdown: React.FC = () => {
     const sortedOptionSelected = state.availableSorts[optionIndex].id;
     selectOption(optionDiv);
     dispatch({ type: 'SET_SORT', payload: sortedOptionSelected });
+    const filters: productRequestFilters = {
+      searchQuery: state.searchQuery,
+      sort:  sortedOptionSelected,
+      priceRange: state.priceRange
+    }
+    SearchProductsController.getProductsWithFilters(filters, dispatch)
   }
 
   return (
     <div className={styles.sortDropdownContainer}>
-      <label htmlFor='sort'>{searchTexts.sortTitle}</label>
-      <div className={styles.customSelect}>
-        <select id='sort' ref={select}>
-          {state.availableSorts.map((sort) => (
-            <option key={sort.id} value={sort.id}>
-              {sort.name}
-            </option>
-          ))}
-        </select>
-      </div>
+      {state.products.length > 0 && 
+        <>
+          <label htmlFor='sort'>{searchTexts.sortTitle}</label>
+          <div className={styles.customSelect}>
+            <select id='sort' ref={select}>
+              {state.availableSorts.map((sort) => (
+                <option key={sort.id} value={sort.id}>
+                  {sort.name}
+                </option>
+              ))}
+            </select>
+          </div>
+        </>
+      }
     </div>
   );
 };

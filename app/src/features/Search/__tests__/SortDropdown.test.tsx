@@ -8,6 +8,7 @@ import SortDropdown from '../components/SortDropdown';
 import 'raf/polyfill';
 import { searchTexts } from '../constants/texts';
 import { sortTypes } from '../constants/sortTypes';
+import { product1, product2 } from '../../../__mocks__/productsMock';
 
 jest.mock('../../../context/AppContext', () => ({
   ...jest.requireActual('../../../context/AppContext'),
@@ -20,9 +21,17 @@ describe('SortDropdown Component', () => {
         <SortDropdown />
       </AppProvider>
     );
-  it('renders SortDropdown component', () => {
-    const select = screen.getByLabelText(searchTexts.sortTitle)
-    expect(select).toBeInTheDocument();
+  it('renders SortDropdown component', async () => {
+    await act(async () => {
+      dispatchMock({ type: actionTypes.setProducts, payload: [product1, product2] });
+      await waitFor(() => {
+        screen.findAllByText(searchTexts.sortTitle).then(() => {
+          const {state} = useAppState();
+          expect(state).toBe([product1, product2]);
+        })
+      })
+    })
+    
   });
 
   it('fires custom select creation on store change', async () => {

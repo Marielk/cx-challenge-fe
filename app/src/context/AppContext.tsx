@@ -11,7 +11,13 @@ const initialState: AppState = {
   products: [],
   searchQuery: '',
   sort: '',
-  availableSorts: []
+  availableSorts: [],
+  priceRange: { min: 0, max: 0 }, 
+  availablePricesRanges: [{
+    id: '',
+    name: '',
+    results: 0
+  }]
 };
 
 export const AppContext = createContext<AppContextProps | undefined>(undefined);
@@ -26,6 +32,10 @@ export const appReducer = (state: AppState, action: AppAction): AppState => {
       return { ...state, sort: action.payload };
     case 'SET_AVAILABLE_SORTS':
       return { ...state, availableSorts: action.payload };
+    case 'SET_AVAILABLE_PRICES_RANGES':
+      return { ...state, availablePricesRanges: action.payload };
+    case 'SET_PRICE_RANGE':
+      return { ...state, priceRange: action.payload };
     default:
       return state;
   }
