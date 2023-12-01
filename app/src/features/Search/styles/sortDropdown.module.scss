@@ -3,11 +3,13 @@
 .sortDropdownContainer {
   margin-bottom: 0.5em;
   display: flex;
-  width: 68%;
+  width: 83%;
   justify-content: flex-end;
   align-items: flex-end;
   height: 2em;
-
+  @include small-screen {
+    justify-content: center;
+  }
   label {
     margin-right: 1em;
     font-family: Proxima Nova,-apple-system,Roboto,Arial,sans-serif;

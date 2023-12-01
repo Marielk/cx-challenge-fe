@@ -1,0 +1,64 @@
+@import 'src/styles/globals';
+
+.priceFilterContainer {
+  display: flex;
+  width: 25%;
+  flex-direction: column;
+  font-family: Proxima Nova,-apple-system,Roboto,Arial,sans-serif;
+  color: $ml-text-gray;
+  padding-left: 1em;
+  @include small-screen {
+    width: 100%;
+    margin-bottom: 2em;
+  }
+  .titleRow {
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.25;
+    margin-bottom: 0px;
+    h2 {
+      margin-bottom: 0px;
+    }
+  }
+
+  .rangesAvailables {
+    p {
+      font-family: Proxima Nova,-apple-system,Roboto,Arial,sans-serif;
+      font-size: 12px;
+      font-weight: 300;
+      color: $ml-text-lightgray;
+      letter-spacing: 1px;
+      cursor: pointer;
+      span {
+        margin-left: 0.5em;
+        opacity: 0.5;
+      }
+    }
+  }
+
+  .inputs {
+    display: flex;
+    align-items: center;
+
+    input {
+      width: 35%;
+      padding: 0.5em;
+      border-radius: 5px;
+      border: 1px solid lightgray;
+      display: inline-flex;
+    }
+    span {
+      color: $ml-text-gray;
+    }
+
+    button {
+      border-radius: 50%;
+      color: white;
+      background-color: #C0C0C0;
+      border: none;
+      width: 25px;
+      height: 25px;
+      margin-left: 5px;
+    }
+  }
+}

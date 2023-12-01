@@ -5,14 +5,17 @@ import { searchTexts } from '../constants/texts';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'
 import styles from '../styles/searchBar.module.scss'
+import { SearchProductsController } from '../../../services/Search/searchProductsController';
 
 const SearchBar: React.FC = () => {
   const searchInput = useRef<HTMLInputElement>(null);
   const { dispatch } = useAppState();
 
   const handleSearch = () => {
-    searchInput.current?.value && 
-    dispatch({ type: 'SET_SEARCH_QUERY', payload: searchInput.current.value });
+    const inputValue = searchInput.current?.value
+    if(!inputValue) return 
+    dispatch({ type: 'SET_SEARCH_QUERY', payload: inputValue });
+    SearchProductsController.getProducts(inputValue, dispatch)
   };
 
   return (

@@ -9,9 +9,17 @@
   justify-content: center;
   flex-direction: column;
   align-items: center;
+  .body {
+    display: flex;
+    width: 100%;
+    @include small-screen {
+      flex-direction: column;
+      align-items: center;
+    }
+  }
   .searchResultsList {
     background-color: white;
-    width: 70%;
+    width: 65%;
     margin-top: 0em;
     padding-left: 1em;
     @include small-screen {
